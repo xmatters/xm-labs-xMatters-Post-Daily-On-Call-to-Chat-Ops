@@ -137,10 +137,10 @@ __Basic Configuration Steps__:
 	
 4. Set the Scheduled Message Name, Recurrence, Frequency, Start and End Date.
 
-		<kbd>
-    <img src="/media/schedule.png" width="350px">
-	</kbd>
-	<br><br>
+<kbd>
+<img src="/media/schedule.png" width="400px">
+</kbd>
+<br><br>
 	
 * Keep in mind the time that you schedule the event will influence who is on call. The Flow will get who is on call at the time of the event.
 If your shift changes at 12am you will want to scheduled the event just After the shift change. 
