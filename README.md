@@ -20,6 +20,13 @@ xMatters already has prebuilt steps for Slack and Microsoft Teams. You can find 
 
 # How it works
 
+A scheduled xMatters event will triggers a Flow that posts to a chat ops tool. 
+The Flow gets the primary on-call resource from a Pipe separated list of groups set as a constant. 
+The Flow step creates a string containing the primary on-call for each group in the constant. 
+This is posted as a message to a predefined chat-ops channel.
+
+__Basic Configuration Steps__:
+
 1. Import the xMatters Workflow.
 2. Set xMatters Constant for __Groups__.
 3. Configure chat ops tool endpoint.
@@ -40,7 +47,7 @@ xMatters already has prebuilt steps for Slack and Microsoft Teams. You can find 
 
 ## Set xMatters Constant for __Groups__
 
-1. Click Chat Ops Who's On-Call workflow, then go to __Integration Builder__ tab. 
+1. Click __Chat Ops Who's On-Call__ workflow, then go to __Integration Builder__ tab. 
 
 2. Click __Edit Constants__.
 
@@ -48,16 +55,16 @@ xMatters already has prebuilt steps for Slack and Microsoft Teams. You can find 
 
 4. Set the constant value with a pipe "|" delimited list of xMatters group names to get the primary on call from.
 
-Example: ESD_DevOps|ITSM Management|Admin Group
+	__Example__: ESD_DevOps|ITSM Management|Admin Group
 
 <kbd>
     <img src="/media/groups-constant.png" width="650px">
 </kbd>
 <br><br>
 
-## Configure chat ops tool endpoint.
+## Configure Chat Ops Endpoint.
 
-1. Click Chat Ops Who's On-Call workflow, then go to __Integration Builder__ tab. 
+1. Click __Chat Ops Who's On-Call__ workflow, then go to __Integration Builder__ tab. 
 
 2. Click __Edit Endpoints__.
 
@@ -69,7 +76,7 @@ Example: ESD_DevOps|ITSM Management|Admin Group
 - [Help with Microsoft Teams](https://help.xmatters.com/ondemand/xmodwelcome/flowdesigner/microsoft-teams-steps.htm?cshid=FlowTeams)
 - Check xmLabs for Webex Teams Steps
 
-## Configure Flow
+## Configure the Flow
 
 
 <kbd>
@@ -77,22 +84,22 @@ Example: ESD_DevOps|ITSM Management|Admin Group
 </kbd>
 <br><br>
 
-1. 1. Click Chat Ops Who's On-Call workflow, then go to __Flow__ tab. 
+1. Click __Chat Ops Who's On-Call__ workflow, then go to __Flow__ tab. 
 
 2. Click __Chat Ops Who's On Call__ Flow.
 
-3. Configure the existing Slack Step.
+3. Configure the existing Slack Step:
 	
 	a. Double click on the __Post to Channel__ Slack Step
 
+	b. Set the __Channel Name__ you would like to post to.
+	
+	
 
 	<kbd>
     <img src="/media/Chat-tool.png">
 	</kbd>
 	<br><br>
-
-
-	b. Set the channel Name you would like to post to.
 	
 	c. Ensure message is set to __Get Who's On Call from List of Groups > onCall__
 	
@@ -105,7 +112,7 @@ Example: ESD_DevOps|ITSM Management|Admin Group
 	</kbd>
 	<br><br>
 
-	d. Set Endpoint
+	d. Set the Endpoint.
 
 
 ## Create a scheduled xMatters event.
@@ -119,20 +126,19 @@ Example: ESD_DevOps|ITSM Management|Admin Group
 	</kbd>
 	<br><br>
 	
-3. Click Schedule Message.  
+3. Click __Schedule Message__.
 	- You will get a warning about no Recipients Selected. Go ahead and press __Send__.
-	
-		<kbd>
-    <img src="/media/Schedule-button.png">
+	<kbd>
+    <img src="/media/Schedule-button.png" width="500px">
 	</kbd>
 	<br><br>
 	
 	
 	
-4. Give the Scheduled Message a Name, Set the recurrence and frequency, Start date and when it should end.
+4. Set the Scheduled Message Name, Recurrence, Frequency, Start and End Date.
 
 		<kbd>
-    <img src="/media/schedule.png">
+    <img src="/media/schedule.png" width="350px">
 	</kbd>
 	<br><br>
 	
@@ -142,13 +148,13 @@ Failing to do this will post who WAS on call not who IS on call now.
 	
 
 Once you have a scheduled message you will see a new section at the bottom of the messaging section as follows:
-
-	<kbd>
-    <img src="/media/view-scheduled.png">
-	</kbd>
-	<br><br>
-		
 	
+<kbd>
+<img src="/media/view-scheduled.png">
+</kbd>
+<br><br>
+
+
 
 # Troubleshooting
 
