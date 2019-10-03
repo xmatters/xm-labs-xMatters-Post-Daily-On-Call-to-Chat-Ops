@@ -25,6 +25,11 @@ The Flow gets the primary on-call resource from a Pipe separated list of groups 
 The Flow step creates a string containing the primary on-call for each group in the constant. 
 This is posted as a message to a predefined chat-ops channel.
 
+Inactive Users will be skipped and the next on call resource will be used instead.
+Temporary absence will be observed.
+Nested groups will be displayed as on call. This step will not traverse through multiple levels of nested groups.
+
+
 __Basic Configuration Steps__:
 
 1. Import the xMatters Workflow.
