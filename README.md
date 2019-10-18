@@ -1,6 +1,6 @@
 # xMatters Post Daily primary on-call from a list of groups to chat ops tool.
 
-Posts the primary on call from a list of groups to a chat ops tool based on a scheduled xMatters event.
+Posts the 1 to n number of on-call members from a list of groups to a chat ops tool based on a scheduled xMatters event.
 
 <kbd>
   <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
@@ -16,14 +16,55 @@ xMatters already has prebuilt steps for Slack and Microsoft Teams. You can find 
 
 # Files
 
-- [ChatOpsWhosOnCall](ChatOpsWhosOnCall.zip)
+- [ChatOpsWhosOnCallv3](ChatOpsWhosOnCallv3.zip)
 
 # How it works
 
 A scheduled xMatters event will triggers a Flow that posts to a chat ops tool. 
-The Flow gets the primary on-call resource from a Pipe separated list of groups set as a constant. 
-The Flow step creates a string containing the primary on-call for each group in the constant. 
+The Flow gets the on-call resources from a Pipe separated list of groups set as a constant. 
+The Flow step creates a string containing the on-call resources for each group in the constant. 
 This is posted as a message to a predefined chat-ops channel.
+
+- Supports all group member types (User, Devices, Groups, Dynamic Teams).
+- Inactive Users will be skipped and the next on call resource will be used instead.
+- Temporary absence will be observed.
+- Displays on call resources separated by each shift in a group.
+- Will get n number of nested groups and include in the on-call resources list.
+- Provides an input for the number of on call resources you would like to post to chat ops tool for each group.
+- Wait times and escalation types are included between each on call resource.
+- Nested groups with multiple shifts will have shift info included inline.
+- Can handle  empty groups, empty shifts, and groups with no shifts.
+
+
+
+_Sample On-Call Posted to Slack:_
+
+<kbd>
+    <img src="/media/slack-output.png" width="650px">
+</kbd>
+<br><br>
+
+
+_Parent: CAB Approvals Group_
+<kbd>
+    <img src="/media/groupA.png" width="400px">
+</kbd>
+<br><br>
+
+_Nested Group: Admin Group_
+<kbd>
+    <img src="/media/groupB.png" width="400px">
+</kbd>
+<br><br>
+
+_Nested Nested Group: ABCGroup_
+<kbd>
+    <img src="/media/groupC.png" width="400px">
+</kbd>
+<br><br>
+
+
+
 
 __Basic Configuration Steps__:
 
@@ -101,7 +142,7 @@ __Basic Configuration Steps__:
 	</kbd>
 	<br><br>
 	
-	c. Ensure message is set to __Get Who's On Call from List of Groups > onCall__
+	c. Ensure message is set to __Merge On-Call > onCall__
 	
 	<kbd>
     <img src="/media/set-message.png">
@@ -114,6 +155,23 @@ __Basic Configuration Steps__:
 
 	d. Set the Endpoint.
 
+4. Ensure Merge On-Call Step is configured.
+	
+	a. Double click on the __Merge On-Call__ Step
+
+	b. Set the __Groups__ Input to the _Groups_ Constant from the right.
+	
+	c. Sent the number of levels of Escalations you would like to post to chat tool.
+	
+	
+	
+	<kbd>
+    <img src="/media/configure.png">
+	</kbd>
+	<br><br>
+	
+	
+	
 
 ## Create a scheduled xMatters event.
 
