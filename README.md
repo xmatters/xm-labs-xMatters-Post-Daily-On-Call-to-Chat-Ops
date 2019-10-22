@@ -176,7 +176,7 @@ __Basic Configuration Steps__:
 	
 	The message will only include one device for each user.
 	
-	Example: Work Phone|Mobile Phone|SMS Phone
+	Example: Work Phone|Mobile Phone|On-Call SMS
 	
 	<kbd>
     <img src="/media/add-device.png">
