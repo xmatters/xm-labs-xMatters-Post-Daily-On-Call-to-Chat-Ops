@@ -16,7 +16,7 @@ xMatters already has prebuilt steps for Slack and Microsoft Teams. You can find 
 
 # Files
 
-- [ChatOpsWhosOnCallv3](ChatOpsWhosOnCallv3.zip)
+- [ChatOpsWhosOnCallv4](ChatOpsWhosOnCallv4.zip)
 
 # How it works
 
@@ -33,7 +33,8 @@ This is posted as a message to a predefined chat-ops channel.
 - Provides an input for the number of on call resources you would like to post to chat ops tool for each group.
 - Wait times and escalation types are included between each on call resource.
 - Nested groups with multiple shifts will have shift info included inline.
-- Can handle  empty groups, empty shifts, and groups with no shifts.
+- Can handle empty groups, empty shifts, and groups with no shifts.
+- Include (optionally) a users device in the chat ops message.
 
 
 
@@ -80,7 +81,7 @@ __Basic Configuration Steps__:
 
 ## Import the xMatters Workflow
 
-1. Download the [Chat Ops Who's On Call Workflow](ChatOpsWhosOnCall.zip)
+1. Download the [ChatOpsWhosOnCallv4](ChatOpsWhosOnCallv4.zip)
 
 2. Follow instructions for [Importing a Workflow](https://help.xmatters.com/ondemand/xmodwelcome/communicationplanbuilder/exportcommplan.htm)
 
@@ -161,8 +162,26 @@ __Basic Configuration Steps__:
 
 	b. Set the __Groups__ Input to the _Groups_ Constant from the right.
 	
-	c. Sent the number of levels of Escalations you would like to post to chat tool.
+	c. Set the number of levels of Escalations you would like to post to chat tool.
 	
+	d. Optional: Set the _Device Names_ input. 
+	
+		- Include a Pipe | separated list of xMatters device names. 
+		- If left blank, devices will not be included.
+		- The first device listed in _Device Names_ input, that is found for an on call member, will be included in the message for that member.
+		- If a user does not have the first device, the integration will look for the seconds device and continue until all devices are exhausted.
+		- To find the device names in your xMatters environment, go to your devices (under profile) and look at the different device names listed.
+		- Includes support for Voice, SMS, and Email devices.
+
+	
+	The message will only include one device for each user.
+	
+	Example: Work Phone|Mobile Phone|SMS Phone
+	
+	<kbd>
+    <img src="/media/add-device.png">
+	</kbd>
+	<br><br>
 	
 	
 	<kbd>
